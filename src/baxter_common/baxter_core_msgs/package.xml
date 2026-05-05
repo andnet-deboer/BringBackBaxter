@@ -25,17 +25,13 @@
   <exec_depend>rosidl_default_runtime</exec_depend>
   <exec_depend>builtin_interfaces</exec_depend>  
 
-  <!-- <export>
- 
-  </export> -->
-
   <member_of_group>rosidl_interface_packages</member_of_group>
   
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
-    <ros1_bridge mapping_rules="my_mapping_rules.yaml"/>
+    <ros1_bridge mapping_rules="mapping_rules.yaml"/>
     <build_type>ament_cmake</build_type>
   </export>
 </package>
