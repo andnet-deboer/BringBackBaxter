@@ -18,8 +18,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-find_package(std_msgs REQUIRED)
 find_package(builtin_interfaces REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
@@ -49,10 +49,10 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/RobustControllerStatus.msg"
   "msg/SEAJointState.msg"
   "msg/URDFConfiguration.msg"
-  "srv/CloseCamera.srv"
-  "srv/ListCameras.srv"
-  "srv/OpenCamers.srv"
-  "srv/SolvePositionsIK.srv"
+  # "srv/CloseCamera.srv"
+  # "srv/ListCameras.srv"
+  # "srv/OpenCamers.srv"
+  # "srv/SolvePositionsIK.srv"
   DEPENDENCIES builtin_interfaces std_msgs geometry_msgs sensor_msgs
 
 )
