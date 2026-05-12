@@ -50,7 +50,7 @@ class PID(object):
         """
         self._kd = invar
 
-    def compute_output(self, dt, error):
+    def compute_output(self, error, dt):
         """
         Performs a PID computation and returns a control value based on
         the elapsed time (dt) and the error signal from a summing junction
