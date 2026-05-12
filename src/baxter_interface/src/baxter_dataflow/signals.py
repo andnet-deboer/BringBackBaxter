@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 # Copyright (c) 2013-2015, Rethink Robotics
 # All rights reserved.
 #
@@ -29,11 +28,7 @@ from __future__ import absolute_import
 import inspect
 from weakref import WeakKeyDictionary
 
-try:
-    from weakref import WeakSet
-except ImportError:
-    from .weakrefset import WeakSet
-
+from weakref import WeakSet
 
 class Signal(object):
     def __init__(self):

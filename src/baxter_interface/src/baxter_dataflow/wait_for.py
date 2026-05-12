@@ -25,5 +25,38 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# from .wait_for import wait_for
-from .signals import Signal
+import errno
+
+import rclpy
+
+
+def wait_for(test, timeout=1.0, raise_on_error=True, rate=100,
+             timeout_msg="timeout expired", body=None):
+    """
+    Waits until some condition evaluates to true.
+
+    @param test: zero param function to be evaluated
+    @param timeout: max amount of time to wait. negative/inf for indefinitely
+    @param raise_on_error: raise or just return False
+    @param rate: the rate at which to check
+    @param timout_msg: message to supply to the timeout exception
+    @param body: optional function to execute while waiting
+    """
+    max_iter = timeout*rate
+    rate = rclpy.Rate(rate)
+    notimeout = (timeout < 0.0) or timeout == float("inf")
+    iters = 0
+    while not test():
+        iters += 1
+        if rclpy.ok() is False:
+            if raise_on_error:
+                raise OSError(errno.ESHUTDOWN, "ROS Shutdown")
+            return False
+        elif (not notimeout) and iters > max_iter:
+            if raise_on_error:
+                raise OSError(errno.ETIMEDOUT, timeout_msg)
+            return False
+        if callable(body):
+            body()
+        rate.sleep()
+    return True
