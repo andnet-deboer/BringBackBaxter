@@ -18,12 +18,6 @@ class PID(object):
         self._ki = ki
         self._kd = kd
 
-        # initialize error, results, and time descriptors
-        self._prev_err = 0.0
-        self._cp = 0.0
-        self._ci = 0.0
-        self._cd = 0.0
-
         self.initialize()
 
     def initialize(self):
